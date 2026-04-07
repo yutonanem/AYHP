@@ -24,3 +24,23 @@
 
   targets.forEach((el) => observer.observe(el));
 })();
+
+// 端末モック内の画像を3秒ごとに切り替える。
+(() => {
+  const rotators = document.querySelectorAll(".device-rotator");
+  if (!rotators.length) return;
+
+  rotators.forEach((img) => {
+    const frames = (img.dataset.frames || "")
+      .split(",")
+      .map((src) => src.trim())
+      .filter(Boolean);
+    if (frames.length < 2) return;
+
+    let index = 0;
+    window.setInterval(() => {
+      index = (index + 1) % frames.length;
+      img.src = frames[index];
+    }, 3000);
+  });
+})();
