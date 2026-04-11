@@ -53,6 +53,42 @@ main {
   padding: var(--space-6) 0;
 }
 
+.lp-hero + .section {
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(180deg, #213a63 0%, #3a557f 100%);
+}
+
+.lp-hero + .section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -42px;
+  width: 100%;
+  height: 44px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 80' preserveAspectRatio='none'%3E%3Cpath d='M0 40 C100 12 200 12 300 40 C400 68 500 68 600 40 C700 12 800 12 900 40 C1000 68 1100 68 1200 40 L1200 80 L0 80 Z' fill='%23213a63'/%3E%3C/svg%3E") no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lp-hero + .section .container {
+  position: relative;
+  z-index: 4;
+}
+
+.lp-hero + .section > .container > .reasons-title {
+  color: #ffffff;
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lp-hero + .section > .container > .reasons-title::after {
+  content: none;
+}
+
 .container {
   width: min(1120px, 90vw);
   margin: 0 auto;
@@ -228,12 +264,20 @@ p {
   margin-left: 0;
 }
 
+.hero-copy .eyebrow {
+  margin-top: 2cm;
+}
+
 .hero-copy .lead {
   margin-top: 3cm;
+  transform: translateX(-6px);
+  max-width: 36ch;
+  line-height: 1.75;
 }
 
 .lp-hero h1 {
   white-space: nowrap;
+  margin-top: 0;
 }
 
 .lp-hero .eyebrow,
@@ -253,12 +297,25 @@ p {
 }
 
 .hero-copy .lp-meta {
-  justify-content: center;
+  justify-content: flex-start;
+  transform: translateX(-58px);
 }
 
 .hero-copy .hero-actions {
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  transform: translateX(-6px);
+}
+
+.hero-copy .hero-actions .button {
+  min-width: 260px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.hero-copy .hero-actions .button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 24px rgba(8, 31, 62, 0.28);
 }
 
 .lp-meta li {
@@ -277,7 +334,7 @@ p {
 }
 
 .lp-hero-panel {
-  margin: calc(var(--space-6) * 2 + 28px) 0 0;
+  margin: calc(var(--space-6) + 24px) 0 0;
   width: min(980px, 92vw);
   margin-left: auto;
   margin-right: auto;
@@ -312,6 +369,11 @@ p {
   padding-left: 22px;
   list-style: disc;
   text-align: left;
+}
+
+.lp-hero-panel .hero-actions {
+  justify-content: center;
+  transform: translateX(-12px);
 }
 
 .lp-hero-panel li {
@@ -804,6 +866,15 @@ p {
   background: #ffffff;
 }
 
+.price-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: var(--space-3);
+}
+
 .price {
   font-size: 22px;
   margin: 0 0 var(--space-2);
@@ -1056,6 +1127,14 @@ p {
 
   .hero-copy .lead {
     margin-top: 18px;
+    transform: none;
+    max-width: none;
+  }
+
+  .hero-copy .lp-meta,
+  .hero-copy .hero-actions,
+  .lp-hero-panel .hero-actions {
+    transform: none;
   }
 
 }
