@@ -1353,6 +1353,10 @@ p {
   display: block;
 }
 
+.showcase-rotating-row.mobile-extra {
+  display: none;
+}
+
 .showcase-rotating-track {
   display: flex;
   gap: 10px;
@@ -1633,6 +1637,10 @@ p {
 
   .problem-list li {
     color: #ffffff;
+  }
+
+  .problem-list li::before {
+    background: #0d2345;
   }
 
   .problem-text {
@@ -1971,19 +1979,24 @@ textarea {
 
   .showcase-rotating-bg {
     opacity: 0.56;
-    gap: 8px;
+    gap: 10px;
   }
 
   .showcase-rotating-row {
-    height: clamp(70px, 20vw, 110px);
+    height: clamp(88px, 24vw, 130px);
+  }
+
+  .showcase-rotating-row.mobile-extra {
+    display: block;
   }
 
   .showcase-rotating-track img {
-    width: clamp(150px, 40vw, 210px);
+    width: clamp(190px, 52vw, 270px);
   }
 
   .works-copy {
     gap: 12px;
+    text-align: center;
   }
 
   .works-copy p {
