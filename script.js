@@ -81,6 +81,42 @@
   });
 })();
 
+// 背景の写真帯を「フィルムが手前→奥→手前に巡る」見え方にする。
+(() => {
+  const images = Array.from(document.querySelectorAll(".showcase-rotating-track img"));
+  if (!images.length) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const updateRibbonDepth = () => {
+    const centerX = window.innerWidth / 2;
+    const radius = Math.max(centerX, 1);
+
+    images.forEach((img) => {
+      const rect = img.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const normalized = Math.min(1, Math.abs(x - centerX) / radius); // 0:center, 1:edge
+      const edgeFactor = Math.pow(normalized, 0.72); // smooth arc
+      const centerFactor = 1 - edgeFactor;
+
+      // 半円の奥行き: 中心が奥(小)、左右が手前(大)
+      const scale = 0.56 + edgeFactor * 0.46;
+      const curveY = centerFactor * 34;
+      const opacity = 0.56 + edgeFactor * 0.44;
+      const brightness = 0.72 + edgeFactor * 0.32;
+      const saturate = 0.84 + edgeFactor * 0.2;
+
+      img.style.transform = `translateY(${-curveY.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+      img.style.opacity = opacity.toFixed(3);
+      img.style.filter = `brightness(${brightness.toFixed(3)}) saturate(${saturate.toFixed(3)})`;
+      img.style.zIndex = String(Math.round(edgeFactor * 100));
+    });
+
+    window.requestAnimationFrame(updateRibbonDepth);
+  };
+
+  window.requestAnimationFrame(updateRibbonDepth);
+})();
+
 // スマホ用ハンバーガーメニューの開閉。
 (() => {
   const header = document.querySelector(".site-header");
