@@ -80,3 +80,41 @@
     }, 3000);
   });
 })();
+
+// スマホ用ハンバーガーメニューの開閉。
+(() => {
+  const header = document.querySelector(".site-header");
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".site-header .nav");
+  if (!header || !toggle || !nav) return;
+
+  const closeMenu = () => {
+    header.classList.remove("is-menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  const openMenu = () => {
+    header.classList.add("is-menu-open");
+    toggle.setAttribute("aria-expanded", "true");
+  };
+
+  toggle.addEventListener("click", () => {
+    if (header.classList.contains("is-menu-open")) {
+      closeMenu();
+      return;
+    }
+    openMenu();
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => closeMenu());
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 767) closeMenu();
+  });
+})();
