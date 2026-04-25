@@ -2091,7 +2091,6 @@ textarea {
     background: #ffffff;
     padding: 0 12px 12px;
     width: min(92vw, 680px);
-    position: relative;
   }
 
   .lp-flow li strong {
@@ -2123,18 +2122,12 @@ textarea {
 
   .flow-mobile-arrow {
     display: inline-flex;
-    position: absolute;
-    left: 26px;
-    top: calc(var(--flow-num-size) + 2px);
-    margin: 0;
-    z-index: 2;
+    margin: 2px 0 4px 26px;
+    opacity: 0;
   }
 
-  .lp-flow li strong::before,
-  .lp-flow li strong::after,
-  .lp-flow .flow-index::before,
-  .lp-flow .flow-index::after {
-    content: none !important;
+  .lp-flow li.reveal-on-scroll.is-visible .flow-mobile-arrow {
+    opacity: 1;
   }
 
   .lp-final-cta .hero-actions {
@@ -2150,8 +2143,6 @@ textarea {
   }
 
   .flow-content > span {
-    display: block;
-    margin-top: 4px;
     font-size: 16px;
     line-height: 1.75;
     text-align: left;
