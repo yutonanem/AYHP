@@ -2124,6 +2124,7 @@ textarea {
     display: inline-flex;
     margin: 2px 0 4px 26px;
     opacity: 0;
+    pointer-events: none;
   }
 
   .lp-flow li.reveal-on-scroll.is-visible .flow-mobile-arrow {
@@ -2143,6 +2144,8 @@ textarea {
   }
 
   .flow-content > span {
+    display: block;
+    margin-top: 0;
     font-size: 16px;
     line-height: 1.75;
     text-align: left;
