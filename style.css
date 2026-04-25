@@ -2091,6 +2091,7 @@ textarea {
     background: #ffffff;
     padding: 0 12px 12px;
     width: min(92vw, 680px);
+    position: relative;
   }
 
   .lp-flow li strong {
@@ -2122,8 +2123,12 @@ textarea {
 
   .flow-mobile-arrow {
     display: inline-flex;
-    margin: 2px 0 4px 26px;
+    position: absolute;
+    left: 26px;
+    top: calc(var(--flow-num-size) + 2px);
+    margin: 0;
     opacity: 0;
+    z-index: 2;
   }
 
   .lp-flow li.reveal-on-scroll.is-visible .flow-mobile-arrow {
