@@ -1644,31 +1644,33 @@ p {
   }
 
   .lp-hero-panel .problem-list li::before {
-    background: #0d2345 !important;
+    background: #ffffff !important;
   }
 
   .lp-hero-panel .problem-text {
-    background-image: linear-gradient(transparent 58%, rgba(13, 35, 69, 0.4) 58%);
+    background-image: linear-gradient(transparent 58%, rgba(13, 35, 69, 0.7) 58%);
   }
 
   .lp-hero-panel .problem-layout {
     background: #0d2345;
     border-radius: 0 0 14px 14px;
-    padding: 0 14px 14px;
+    padding: 0 14px 20px;
     margin-bottom: 18px;
     position: relative;
+    overflow: visible;
   }
 
   .lp-hero-panel .problem-layout::after {
     content: "";
     position: absolute;
     left: 24px;
-    bottom: -10px;
+    bottom: 0;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-top: 10px solid #0d2345;
+    transform: translateY(100%);
   }
 
   .lp-hero-panel .problem-list {
@@ -2123,7 +2125,6 @@ textarea {
     left: 26px;
     opacity: 0;
     animation: none;
-    transition: opacity 0.45s ease, transform 0.45s ease;
   }
 
   .lp-flow li:not(:last-child) .flow-index::after {
@@ -2146,6 +2147,18 @@ textarea {
   .lp-flow li.reveal-on-scroll.is-visible:not(:last-child) strong::after {
     opacity: 0.3;
     animation: arrowPulse 1.4s infinite;
+  }
+
+  .lp-final-cta .hero-actions {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .lp-final-cta .hero-actions .button {
+    min-width: 148px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
 
   .flow-content > span {
