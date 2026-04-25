@@ -1647,6 +1647,34 @@ p {
     background-image: linear-gradient(transparent 58%, rgba(13, 35, 69, 0.4) 58%);
   }
 
+  .lp-hero-panel .problem-list li:nth-child(5) {
+    background: #0d2345;
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-top: 6px;
+  }
+
+  .lp-hero-panel .problem-list li:nth-child(5)::before {
+    display: none;
+  }
+
+  .lp-hero-panel .problem-list li:nth-child(5)::after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #0d2345;
+  }
+
+  .lp-hero-panel .problem-list li:nth-child(5) .problem-text {
+    background-image: none;
+    color: #ffffff;
+  }
+
   .lp-hero {
     padding-top: 0;
     min-height: 620px;
@@ -1735,6 +1763,19 @@ p {
   .hero-copy .hero-actions,
   .lp-hero-panel .hero-actions {
     transform: none;
+  }
+
+  .lp-hero-panel .hero-actions {
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .lp-hero-panel .hero-actions .button {
+    width: auto;
+    min-width: 148px;
+    padding-left: 14px;
+    padding-right: 14px;
   }
 
 }
@@ -2043,8 +2084,8 @@ textarea {
     min-height: var(--flow-num-size);
     margin-top: calc(var(--flow-num-size) * -1 + 2px);
     display: grid;
-    grid-template-columns: 56px 1fr;
-    column-gap: 10px;
+    grid-template-columns: 74px 1fr;
+    column-gap: 14px;
     align-items: start;
     justify-content: start;
     text-align: left;
@@ -2064,18 +2105,37 @@ textarea {
     -webkit-text-stroke: 0 !important;
     line-height: 0.82 !important;
     position: relative;
+    padding-bottom: 30px;
   }
 
-  .lp-flow li:not(:last-child) .flow-index::after {
+  .lp-flow li:not(:last-child) .flow-index::after,
+  .lp-flow li:not(:last-child) .flow-index::before,
+  .lp-flow li:not(:last-child) strong::after {
     content: "";
-    display: block;
     width: 14px;
     height: 14px;
-    margin: 8px 0 0 8px;
     border-right: 2px solid var(--cta);
     border-bottom: 2px solid var(--cta);
     transform: rotate(45deg);
-    opacity: 0.85;
+    position: absolute;
+    left: 21px;
+    opacity: 0.3;
+    animation: arrowPulse 1.4s infinite;
+  }
+
+  .lp-flow li:not(:last-child) .flow-index::after {
+    top: calc(100% - 28px);
+    animation-delay: 0s;
+  }
+
+  .lp-flow li:not(:last-child) .flow-index::before {
+    top: calc(100% - 12px);
+    animation-delay: 0.2s;
+  }
+
+  .lp-flow li:not(:last-child) strong::after {
+    top: calc(100% + 4px);
+    animation-delay: 0.4s;
   }
 
   .flow-content > span {
