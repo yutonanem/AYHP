@@ -539,6 +539,12 @@ p {
   display: block;
 }
 
+.problem-bubble {
+  width: min(760px, 92%);
+  margin: 0 auto;
+  position: relative;
+}
+
 .problem-list {
   padding-left: 0;
   list-style: none;
@@ -1635,56 +1641,84 @@ p {
   }
 
   .lp-hero-panel .problem-title {
-    color: #ffffff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
-    width: min(760px, 92%);
-    margin: 0 auto !important;
+    color: #0d2345;
+    text-shadow: none;
+    width: 100%;
+    margin: 0 !important;
     margin-bottom: 0 !important;
-    padding: 14px 14px 10px;
-    background: #0d2345;
-    border-radius: 14px 14px 0 0;
+    padding: 14px 16px 10px;
+    background: transparent;
+    border-radius: 0;
+    font-size: clamp(20px, 5.6vw, 30px);
+    white-space: nowrap;
   }
 
   .problem-list li {
-    color: #ffffff;
+    color: #0d2345;
   }
 
   .lp-hero-panel .problem-list li::before {
-    background: #ffffff !important;
+    background: #ef7e30 !important;
   }
 
   .lp-hero-panel .problem-text {
-    background-image: linear-gradient(transparent 58%, rgba(13, 35, 69, 0.7) 58%);
+    background-image: linear-gradient(transparent 58%, rgba(239, 126, 48, 0.6) 58%);
   }
 
   .lp-hero-panel .problem-layout {
-    width: min(760px, 92%);
-    background: #0d2345;
-    border-radius: 0 0 14px 14px;
-    padding: 0 14px 20px;
-    margin: 0 auto 18px;
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+    padding: 0 16px 20px;
+    margin: 0 0 18px;
     position: relative;
     overflow: visible;
   }
 
-  .lp-hero-panel .problem-layout::after {
+  .lp-hero-panel .problem-bubble {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 14px;
+    overflow: visible;
+    box-shadow: 0 8px 18px rgba(6, 18, 36, 0.22);
+    position: relative;
+  }
+
+  .lp-hero-panel .problem-bubble::before,
+  .lp-hero-panel .problem-bubble::after {
     content: "";
     position: absolute;
-    left: 24px;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 10px solid #0d2345;
-    transform: translateY(100%);
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow: 0 6px 12px rgba(6, 18, 36, 0.12);
+    pointer-events: none;
+  }
+
+  .lp-hero-panel .problem-bubble::before {
+    width: 24px;
+    height: 24px;
+    left: 28px;
+    bottom: -14px;
+  }
+
+  .lp-hero-panel .problem-bubble::after {
+    width: 14px;
+    height: 14px;
+    left: 18px;
+    bottom: -26px;
   }
 
   .lp-hero-panel .problem-list {
-    width: 100% !important;
+    width: 100%;
     margin: 0 !important;
     padding-left: 0 !important;
     padding-bottom: 0;
+  }
+
+  .lp-hero-panel .problem-list li {
+    padding: 2px 16px 2px 14px;
   }
 
   .lp-hero {
@@ -1958,6 +1992,18 @@ textarea {
 }
 
 @media (max-width: 767px) {
+  .lead-mobile-hidden {
+    display: none;
+  }
+
+  .hero-copy h1 {
+    text-align: center;
+  }
+
+  .lp-meta-mobile-hidden {
+    visibility: hidden;
+  }
+
   .section {
     padding: var(--space-5) 0;
   }
@@ -2088,9 +2134,16 @@ textarea {
     text-align: left;
     display: block;
     margin: 0 auto;
-    background: #ffffff;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0) calc(var(--flow-num-size) - 6px),
+      #ffffff calc(var(--flow-num-size) - 6px),
+      #ffffff 100%
+    );
     padding: 0 12px 12px;
     width: min(92vw, 680px);
+    position: relative;
   }
 
   .lp-flow li strong {
@@ -2107,7 +2160,7 @@ textarea {
     font-size: clamp(22px, 6vw, 30px);
     line-height: 1.2;
     padding: 8px 8px 0 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.74) 44%, rgba(255, 255, 255, 0.16) 100%);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.80) 44%, rgba(255, 255, 255, 0.46) 100%);
     position: relative;
     z-index: 2;
   }
@@ -2122,13 +2175,18 @@ textarea {
 
   .flow-mobile-arrow {
     display: inline-flex;
-    margin: 2px 0 4px 26px;
+    position: absolute;
+    left: 26px;
+    top: calc(var(--flow-num-size) + 18px);
+    margin: 0;
     opacity: 0;
     pointer-events: none;
+    transition: opacity 0.35s ease;
   }
 
   .lp-flow li.reveal-on-scroll.is-visible .flow-mobile-arrow {
     opacity: 1;
+    transition-delay: 0.22s;
   }
 
   .lp-final-cta .hero-actions {
